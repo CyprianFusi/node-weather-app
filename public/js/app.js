@@ -1,5 +1,3 @@
-console.log("This is a client side javascript file!");
-
 const weatherForm = document.querySelector("form");
 const search = document.querySelector("input");
 const msgOne = document.querySelector("#msg-1");
