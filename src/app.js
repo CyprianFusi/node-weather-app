@@ -73,12 +73,12 @@ app.get('/weather', (req, res) => {
                 summary,
                 temperature,
                 precipitation
-            })
-        })
+            });
+        });
 
-    })
+    });
    
-})
+});
 
 //Define routes: 404 page
 app.get("/help/*", (req, res) => {
@@ -86,8 +86,8 @@ app.get("/help/*", (req, res) => {
         title: 404,
         errorText: "Error: Help article not found", 
         name: "Binati"
-    })
-})
+    });
+});
 
 //Define routes: 404 page
 app.get("*", (req, res) => {
@@ -99,5 +99,5 @@ app.get("*", (req, res) => {
 })
 //start the server
 app.listen(port, () => {
-    console.log(`Server is up on ${port}`)
-})
+    console.log(`Server is up on ${port}`);
+});
