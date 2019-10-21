@@ -42,7 +42,7 @@ app.get("/about", (req, res) => {
 app.get("/help", (req, res) => {
     res.render("help", {
         title: "Help Info",
-        helpText: "Please provide your telephone number including country code.",
+        helpText: "This page is under construction...",
         name: "Binati"
     })
 })
