@@ -26,7 +26,9 @@ app.use(express.static(publicDirPath));
 app.get("/", (req, res) => {
     res.render("index", {
         title: "Weather",
-        name: "Binati"
+        name: "Binati",
+        image: "weather.png",
+        style: "style.css"
     })
 })
 
@@ -34,7 +36,9 @@ app.get("/", (req, res) => {
 app.get("/about", (req, res) => {
     res.render("about", {
         title: "About us",
-        name: "Binati"
+        name: "Binati",
+        image: "weather.png",
+        style: "style.css"
     });
 })
 
@@ -43,7 +47,9 @@ app.get("/help", (req, res) => {
     res.render("help", {
         title: "Help Info",
         helpText: "This page is under construction...",
-        name: "Binati"
+        name: "Binati",
+        image: "weather.png",
+        style: "style.css"
     })
 })
 
@@ -59,20 +65,24 @@ app.get('/weather', (req, res) => {
             return res.send({err});
         }
 
-        forecast(latitude, longitude, (err, {summary, temperature, precipitation}) => {
+        forecast(latitude, longitude, (err, {summary, temperature, precipitation, temperatureMin, temperatureMax}) => {
             if(err) {
                 return res.send({err});
             }
-            const address = req.query.address;
-            const now = new Date();
-            const today = now.getDate() + "-" + parseInt(now.getMonth() + 1) + "-" + now.getFullYear();
+            let address = req.query.address;
+            let now = new Date();
+            let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            let today = days[now.getDay()] + ", " + now.getDate() + "-" + months[now.getMonth()] + "-" + now.getFullYear();
             res.send({
                 today,
                 address,
                 location,
                 summary,
                 temperature,
-                precipitation
+                precipitation,
+                temperatureMin,
+                temperatureMax
             });
         });
 
@@ -85,7 +95,8 @@ app.get("/help/*", (req, res) => {
     res.render("404", {
         title: 404,
         errorText: "Error: Help article not found", 
-        name: "Binati"
+        name: "Binati",
+        style: "style.css"
     });
 });
 

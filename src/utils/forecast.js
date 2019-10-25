@@ -9,13 +9,17 @@ const forecast = (lat, long, callback) => {
         } else if(body.error) {
             callback(chalk.red.inverse("Unable to find location!"), undefined);
         } else {
-            const  summary = body.daily.data[0].summary;
-            const temperature = `It is currently ${body.currently.temperature} degrees outside.`;
-            const precipitation = `${body.currently.precipProbability}% possibility of rain.`;
+            let  summary = body.daily.data[0].summary;
+            let temperature = `It is currently ${body.currently.temperature} degrees outside.`;
+            let precipitation = `${body.currently.precipProbability}% possibility of rain.`;
+            let temperatureMin = `The minimum temperature of the day is ${body.daily.data[0].temperatureMin} degrees.`;
+            let temperatureMax = `The maximum temperature of the day is ${body.daily.data[0].temperatureMax} degrees.`;
             callback(undefined, {
                 summary,
                 temperature,
-                precipitation
+                precipitation,
+                temperatureMin,
+                temperatureMax
             })
         }
     })
